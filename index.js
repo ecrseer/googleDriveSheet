@@ -99,8 +99,8 @@ app.get("/", (req, res) => {
             if (err) {
                 console.log(err);
             } else {
-                console.log("foi autenticado, irei redirecionar")
-                console.log(response.data);
+                /* console.log("foi autenticado, irei redirecionar")
+                console.log(response.data); */
                 name = response.data.name
                 pic = response.data.picture
                 res.render("success", {
