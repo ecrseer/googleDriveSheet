@@ -189,8 +189,11 @@ app.get("/google/callback", function (req, res) {
     }
 });
 var porta = process.env.PORT || 5000;
-
-app.listen(porta, () => 
-{
-    console.log("App is listening on Port"+porta);
-});
+function escutar(){
+    app.listen(porta, () => 
+    {
+        console.log("App is listening on Port"+porta);
+    });
+}
+escutar();
+module.exports={escutar}
