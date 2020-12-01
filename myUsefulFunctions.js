@@ -24,5 +24,15 @@ async function readMyToken(fs,oAuth2Client){
            }
        )
        }
+       async function readStart(fs){
+        return new Promise(
+           (resolve,reject)=>{
+                   
+                   let myJson = fs.readFileSync('./armazen/gooSheetY.json');
+                   if (!myJson) reject(err);
+                   resolve(JSON.parse(myJson));
+               }
+           )
+           }
 
-module.exports={downloadMyFile ,readMyToken}
+module.exports={downloadMyFile ,readMyToken,readStart}
