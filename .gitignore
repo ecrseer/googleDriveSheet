@@ -4,5 +4,6 @@ node_modules
 views/upTutCreds.json
 creds
 meutoken.json
-armazen
+armazen/gooSheetY.json
+armazen/tabela.xlsx
 unused
