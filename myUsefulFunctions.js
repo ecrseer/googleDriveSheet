@@ -14,11 +14,15 @@ async function downloadMyFile(google,oAuth2Client){
 
     })    
 }
-module.exports={downloadMyFile ,
- readMyToken(fs,oAuth2Client){
-        console.log('reading token');
-        let myJson = fs.readFileSync('./meutoken.json');
-        oAuth2Client.setCredentials(JSON.parse(myJson));
-//        res.render("index", { url: url });    
-}
-}
+async function readMyToken(fs,oAuth2Client){
+    return new Promise(
+       (resolve,reject)=>{
+               console.log('reading token');
+               let myJson = fs.readFileSync('./meutoken.json');
+               if (!myJson) reject(err);
+               oAuth2Client.setCredentials(JSON.parse(myJson));
+           }
+       )
+       }
+
+module.exports={downloadMyFile ,readMyToken}
