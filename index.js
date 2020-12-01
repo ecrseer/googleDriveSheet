@@ -3,7 +3,8 @@ const cors = require('cors');
 const express = require("express");
 const multer = require("multer");
 
-const OAuth2Data = require("./armazen/gooSheetY.json");
+var OAuth2Data = require("./armazen/gooSheetY.json");
+OAuth2Data = OAuth2Data ? OAuth2Data : {'empty':'json'}
 var name, pic;
 
 const { google } = require("googleapis");
