@@ -4,11 +4,11 @@ const express = require("express");
 const multer = require("multer");
 const handy = require('./myUsefulFunctions');
 
-var OAuth2Data2 = handy.readStart(fs).then((cnteud)=>console.log(cnteud.web))
+var OAuth2Data = handy.readStart(fs).then((cnteud)=>console.log(cnteud.web))
 .catch(err=>{return {'lindo':'mar'}});
 
-var OAuth2Data = require("./armazen/gooSheetY.json");
-OAuth2Data = OAuth2Data ? OAuth2Data : {'empty':'json'}
+/* var OAuth2Data = require("./armazen/gooSheetY.json");
+OAuth2Data = OAuth2Data ? OAuth2Data : {'empty':'json'} */
 var name, pic;
 
 const { google } = require("googleapis");
