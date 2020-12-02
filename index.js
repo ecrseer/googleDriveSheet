@@ -68,8 +68,10 @@ app.get("/", (req, res) => {
     if (!authed) {
         // Generate an OAuth URL and redirect there
         try{
-       handy.readMyToken(fs,oAuth2Client);
-       handy.downloadMyFile(google,oAuth2Client);
+       handy.readMyToken(fs,oAuth2Client)
+       .then(handy.downloadMyFile(google,oAuth2Client))
+       .catch(err=>console.log('erro no handy.readMyToken'))
+       
     }catch(err){
         console.log('deu m'+err);        
         //console.log(url);       

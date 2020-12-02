@@ -5,7 +5,7 @@ async function downloadMyFile(google,oAuth2Client){
         const idF = '1oFmgWIHeQYjwcyC2N0W8TwnBwFicI5B8';
         const drive = google.drive({ version: "v3", auth: oAuth2Client });
         sampl(idF,drive).then((dt)=>{console.log('A '+dt) }
-        ).catch((err)=> console.log('Mrr'+err))
+        ).catch((err)=> console.log('Erro no downloadMyFile: '+err))
        }catch(err){
             reject(err);
        }
@@ -17,10 +17,17 @@ async function downloadMyFile(google,oAuth2Client){
 async function readMyToken(fs,oAuth2Client){
     return new Promise(
        (resolve,reject)=>{
-               console.log('reading token');
-               let myJson = fs.readFileSync('./meutoken.json');
+               
+               let myJson = JSON.parse(
+                   fs.readFileSync('./meutoken.json')
+                   );
                if (!myJson) reject(err);
-               oAuth2Client.setCredentials(JSON.parse(myJson));
+
+
+               
+               oAuth2Client.setCredentials(myJson);
+               console.log('readed')
+               resolve(myJson);
            }
        )
        }
