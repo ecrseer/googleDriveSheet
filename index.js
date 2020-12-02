@@ -3,44 +3,37 @@ const cors = require('cors');
 const express = require("express");
 const multer = require("multer");
 const handy = require('./myUsefulFunctions');
-
-/* const CLIENT_ID = OAuth2Data.web.client_id;
-const CLIENT_SECRET = OAuth2Data.web.client_secret;
-const REDIRECT_URL = OAuth2Data.web.redirect_uris[0];
- */
-/* 
-var OAuth2Data = require("./armazen/gooSheetY.json");
-console.log(OAuth2Data.web.redirect_uris);/* 
-OAuth2Data = OAuth2Data ? OAuth2Data : {'empty':'json'} */
-
-
 const { google } = require("googleapis");
+var OAuth2Data = require("./google-credentials.json");
+
+const CLIENT_ID = OAuth2Data.web.client_id;
+const CLIENT_SECRET = OAuth2Data.web.client_secret;
+const REDIRECT_URL = process.env.NODE_ENV == 'production'?
+OAuth2Data.web.redirect_uris[1] : OAuth2Data.web.redirect_uris[0] ;
+
+const oAuth2Client = new google.auth.OAuth2(
+    CLIENT_ID,
+    CLIENT_SECRET,
+    REDIRECT_URL
+);
+
+
 
 const app = express();
-
 const tabelaCrud = require("./tabelaCrud");
+
 var name, pic;
-
-let oAuth2Client;
-var oAuthData = handy.readStartOauth(fs).
-then(things=> oAuth2Client = new google.auth.OAuth2(
-    things.web.client_id,
-    things.web.client_secret,
-    things.web.redirect_uris[0]
-) 
-).catch(err=>{console.log('EROW:'+err)}).then( )
-
-
 var authed = false;
+
 
 // If modifying these scopes, delete token.json.
 const SCOPES =
     "https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/userinfo.profile";
 
 app.set("view engine", "ejs");
+
 //me
 app.use(express.json());
-
 app.use(cors());
 
 var Storage = multer.diskStorage({
@@ -57,30 +50,12 @@ var upload = multer({
     storage: Storage,
 }).single("file"); //Field name and max count
 
-function downloadMyFile(){
-    const drive = google.drive({ version: "v3", auth: oAuth2Client });
-    const idF = '1oFmgWIHeQYjwcyC2N0W8TwnBwFicI5B8';
-    sampl(idF,drive).then((dt)=>{     
-    console.log('A '+dt) }).catch((err)=> console.log('Mrr'+err))
-
-}
-
-function readMyToken(){
-    try{
-        console.log('CLendo token');
-        let myJson = fs.readFileSync('./meutoken.json');
-        oAuth2Client.setCredentials(JSON.parse(myJson));
-    }catch(er){
-        console.log(er);
-    }
-
-}
 function templateBehaviour(resposta){
     var url = oAuth2Client.generateAuthUrl({
         access_type: "offline",
         scope: SCOPES,
     });
-    console.log(url);
+    //console.log(url);
     resposta.render("index", { url: url });
 }
 
@@ -97,7 +72,7 @@ app.get("/", (req, res) => {
        handy.downloadMyFile(google,oAuth2Client);
     }catch(err){
         console.log('deu m'+err);        
-        console.log(url);       
+        //console.log(url);       
         }finally{templateBehaviour(res);}
     } else {
         var oauth2 = google.oauth2({
@@ -178,7 +153,7 @@ app.get("/google/callback", function (req, res) {
                 console.log(err);
             } else {
                 console.log("Successfully authenticated");
-                console.log(tokens);
+               // console.log(tokens);
                 oAuth2Client.setCredentials(tokens);
                 //
                 fs.writeFile('./meutoken.json', JSON.stringify(tokens), (err) => {

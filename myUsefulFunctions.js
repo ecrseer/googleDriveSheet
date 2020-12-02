@@ -28,7 +28,7 @@ async function readMyToken(fs,oAuth2Client){
         return new Promise(
            (resolve,reject)=>{
                    
-                   let myJson = fs.readFileSync('./armazen/gooSheetY.json');
+                   let myJson = fs.readFileSync('./google-credentials.json');
                    if (!myJson) reject({'lindo':'mar'});
                    let
                    things = JSON.parse(myJson)
