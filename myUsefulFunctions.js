@@ -24,15 +24,19 @@ async function readMyToken(fs,oAuth2Client){
            }
        )
        }
-       async function readStart(fs){
+       async function readStartOauth(fs){
         return new Promise(
            (resolve,reject)=>{
                    
                    let myJson = fs.readFileSync('./armazen/gooSheetY.json');
-                   if (!myJson) reject(err);
-                   resolve(JSON.parse(myJson));
+                   if (!myJson) reject({'lindo':'mar'});
+                   let
+                   things = JSON.parse(myJson)
+                   
+
+                   resolve(things);
                }
            )
            }
 
-module.exports={downloadMyFile ,readMyToken,readStart}
+module.exports={downloadMyFile ,readMyToken,readStartOauth}

@@ -4,29 +4,33 @@ const express = require("express");
 const multer = require("multer");
 const handy = require('./myUsefulFunctions');
 
-var OAuth2Data = handy.readStart(fs).then((cnteud)=>console.log(cnteud.web))
-.catch(err=>{return {'lindo':'mar'}});
-
-/* var OAuth2Data = require("./armazen/gooSheetY.json");
+/* const CLIENT_ID = OAuth2Data.web.client_id;
+const CLIENT_SECRET = OAuth2Data.web.client_secret;
+const REDIRECT_URL = OAuth2Data.web.redirect_uris[0];
+ */
+/* 
+var OAuth2Data = require("./armazen/gooSheetY.json");
+console.log(OAuth2Data.web.redirect_uris);/* 
 OAuth2Data = OAuth2Data ? OAuth2Data : {'empty':'json'} */
-var name, pic;
+
 
 const { google } = require("googleapis");
 
 const app = express();
 
 const tabelaCrud = require("./tabelaCrud");
+var name, pic;
+
+let oAuth2Client;
+var oAuthData = handy.readStartOauth(fs).
+then(things=> oAuth2Client = new google.auth.OAuth2(
+    things.web.client_id,
+    things.web.client_secret,
+    things.web.redirect_uris[0]
+) 
+).catch(err=>{console.log('EROW:'+err)}).then( )
 
 
-const CLIENT_ID = OAuth2Data.web.client_id;
-const CLIENT_SECRET = OAuth2Data.web.client_secret;
-const REDIRECT_URL = OAuth2Data.web.redirect_uris[0];
-
-const oAuth2Client = new google.auth.OAuth2(
-    CLIENT_ID,
-    CLIENT_SECRET,
-    REDIRECT_URL
-);
 var authed = false;
 
 // If modifying these scopes, delete token.json.
