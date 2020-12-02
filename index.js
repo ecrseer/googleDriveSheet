@@ -64,6 +64,7 @@ function templateBehaviour(resposta){
 //app.get("/arquivo",tabelaCrud.pesquisar);
 let sheetUrl = process.env.MY_SHEET ? process.env.MY_SHEET : 'arquivo'
 app.post("/"+sheetUrl,tabelaCrud.pesquisar);
+app.get("/"+sheetUrl,tabelaCrud.pesquisar);
 
 app.get("/", (req, res) => {
     if (!authed) {
