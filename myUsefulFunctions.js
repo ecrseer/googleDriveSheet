@@ -16,8 +16,7 @@ async function downloadMyFile(google,oAuth2Client){
 }
 async function readMyToken(fs,oAuth2Client){
     return new Promise(
-       (resolve,reject)=>{
-               
+       (resolve,reject)=>{               
                let myJson = JSON.parse(
                    fs.readFileSync('./meutoken.json')
                    );
@@ -26,7 +25,7 @@ async function readMyToken(fs,oAuth2Client){
 
                
                oAuth2Client.setCredentials(myJson);
-               console.log('readed')
+               
                resolve(myJson);
            }
        )
