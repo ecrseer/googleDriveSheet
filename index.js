@@ -1,3 +1,4 @@
+function ylog(vava){ console.log(vava)}
 const fs = require("fs");
 const cors = require('cors');
 const express = require("express");
@@ -5,6 +6,11 @@ const multer = require("multer");
 const handy = require('./myUsefulFunctions');
 const { google } = require("googleapis");
 var OAuth2Data = require("./google-credentials.json");
+
+const urizinha= process.env.NODE_ENV == 'production'?
+OAuth2Data.web.redirect_uris[1] : OAuth2Data.web.redirect_uris[0];
+
+ylog(urizinha);
 
 const CLIENT_ID = OAuth2Data.web.client_id;
 const CLIENT_SECRET = OAuth2Data.web.client_secret;
