@@ -60,6 +60,7 @@ function templateBehaviour(resposta){
 }
 app.get('/envtest',(req,res)=>{
     console.log(process.env.NODE_ENV);
+    res.send({vavazin:process.env.NODE_ENV})
 })
 
 
