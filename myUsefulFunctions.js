@@ -22,8 +22,6 @@ async function readMyToken(fs,oAuth2Client){
                    fs.readFileSync('./meutoken.json')
                    );
                if (!myJson) reject(err);
-
-
                
                oAuth2Client.setCredentials(myJson);
                
@@ -33,7 +31,12 @@ async function readMyToken(fs,oAuth2Client){
        }
        const readMyTokenENV = function(oAuth2Client){
            return new Promise((resolve,reject)=>{
-                resolve('testinnn'+oAuth2Client)
+               try{oAuth2Client.setCredentials(
+                JSON.parse(process.env.TEMP_TK))
+               }catch(err){
+                   reject(err);
+               }
+                resolve('token is ok')
            })
        }
        

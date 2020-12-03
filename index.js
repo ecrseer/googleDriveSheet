@@ -68,7 +68,17 @@ app.post('/'+testl,(req,res)=>{
     ))
 })
 app.post('/tstenv',(req,resposta)=>{
- //resposta.json(JSON.parse(process.env.TEMP_TK))
+    handy.readMyTokenENV(oAuth2Client).then(
+        handy.downloadMyFile(google,oAuth2Client).then(
+            tabelaCrud.pesquisar(req).then(dados=>
+                resposta.json(dados)
+            )
+            .catch(err=>ylog('n consigo pesquisar??'))
+        )
+        .catch(err=>ylog('n consigo baixar??'+err))
+    )
+    .catch(err=>ylog('vc n tem token??'+err))
+  
 });
 
 
