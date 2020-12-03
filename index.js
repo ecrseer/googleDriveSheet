@@ -58,8 +58,10 @@ function templateBehaviour(resposta){
     //console.log(url);
     resposta.render("index", { url: url });
 }
+app.get('/envtest',(req,res)=>{
+    console.log(process.env.NODE_ENV);
+})
 
-console.log(process.env.NODE_ENV);
 
 //app.get("/arquivo",tabelaCrud.pesquisar);
 let sheetUrl = process.env.MY_SHEET ? ""+process.env.MY_SHEET+"" 
