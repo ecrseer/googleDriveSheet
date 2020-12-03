@@ -68,7 +68,7 @@ app.post('/'+testl,(req,res)=>{
     ))
 })
 app.post('/tstenv',(req,resposta)=>{
- resposta.json(process.env.TEMP_TK)
+ resposta.json(JSON.parse(process.env.TEMP_TK))
 });
 
 
