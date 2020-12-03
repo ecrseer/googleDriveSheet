@@ -59,7 +59,7 @@ function templateBehaviour(resposta){
     resposta.render("index", { url: url });
 }
 
-let testl= process.env.NODE_ENV ? process.env.NODE_ENV : 'none'
+let testl= process.env.NODE_ENV ? ""+process.env.NODE_ENV+"" : 'none'
 app.post('/'+testl,(req,res)=>{
     console.log(process.env.NODE_ENV);
     res.send({vavazin:process.env.NODE_ENV})
@@ -67,7 +67,7 @@ app.post('/'+testl,(req,res)=>{
 
 
 //app.get("/arquivo",tabelaCrud.pesquisar);
-let sheetUrl = process.env.MY_SHEET ? ""+process.env.MY_SHEET+"" 
+let sheetUrl = process.env.MY_SHEET ? process.env.MY_SHEET 
 : 'arquivo';
 app.post("/"+sheetUrl,tabelaCrud.pesquisar);
 
