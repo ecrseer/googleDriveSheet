@@ -64,9 +64,12 @@ function templateBehaviour(resposta){
 
 let testl= process.env.NODE_ENV ? ""+process.env.NODE_ENV+"" : 'none'
 app.post('/'+testl,(req,res)=>{
-    console.log(process.env.NODE_ENV);
-    res.send({vavazin:process.env.NODE_ENV})
+    console.log(handy.readMyTokenENV(234).then(tss=>res.json(tss)
+    ))
 })
+app.post('/tstenv',(req,resposta)=>{
+ resposta.json(process.env.TEMP_TK)
+});
 
 
 //app.get("/arquivo",tabelaCrud.pesquisar);

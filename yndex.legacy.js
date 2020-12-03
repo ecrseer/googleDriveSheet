@@ -8,3 +8,20 @@ then(things=> oAuth2Client = new google.auth.OAuth2(
 )
 
 ).catch(err=>{console.log('EROW:'+err)}).then(console.log('*') )
+
+//usefulfunctns----------------
+
+async function readStartOauth(fs){
+    return new Promise(
+       (resolve,reject)=>{
+               
+               let myJson = fs.readFileSync('./google-credentials.json');
+               if (!myJson) reject({'lindo':'mar'});
+               let
+               things = JSON.parse(myJson)
+               
+
+               resolve(things);
+           }
+       )
+       }

@@ -31,19 +31,11 @@ async function readMyToken(fs,oAuth2Client){
            }
        )
        }
-       async function readStartOauth(fs){
-        return new Promise(
-           (resolve,reject)=>{
-                   
-                   let myJson = fs.readFileSync('./google-credentials.json');
-                   if (!myJson) reject({'lindo':'mar'});
-                   let
-                   things = JSON.parse(myJson)
-                   
+       const readMyTokenENV = function(oAuth2Client){
+           return new Promise((resolve,reject)=>{
+                resolve('testinnn'+oAuth2Client)
+           })
+       }
+       
 
-                   resolve(things);
-               }
-           )
-           }
-
-module.exports={downloadMyFile ,readMyToken,readStartOauth}
+module.exports={downloadMyFile ,readMyToken,readMyTokenENV}
