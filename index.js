@@ -58,7 +58,9 @@ function templateBehaviour(resposta){
     //console.log(url);
     resposta.render("index", { url: url });
 }
-app.post('/envtest',(req,res)=>{
+
+let testl= process.env.NODE_ENV ? process.env.NODE_ENV : 'none'
+app.post('/'+testl,(req,res)=>{
     console.log(process.env.NODE_ENV);
     res.send({vavazin:process.env.NODE_ENV})
 })
