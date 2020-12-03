@@ -1,5 +1,6 @@
 const xlsx = require('node-xlsx').default;
 const fs = require('fs');
+const { downloadMyFile } = require('./myUsefulFunctions');
 var readFilePromise = function(file) {
   return new Promise(function(ok, notOk) {
     fs.readFile(file, function(err, data) {
@@ -15,7 +16,7 @@ var readFilePromise = function(file) {
 function filtro(arr){ return arr.length==4;}
 
 async function pesquisar(requisicao,response){
-    console.log('ereto'+requisicao.body.nomezin);
+    downloadMyFile();
     const workSheetsFromFile = xlsx.parse(`${__dirname}/armazen/tabela.xlsx`),
         nomezin = requisicao.body.nomezin,
         planilha = workSheetsFromFile[1].data,
