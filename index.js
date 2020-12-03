@@ -59,7 +59,7 @@ function templateBehaviour(resposta){
     resposta.render("index", { url: url });
 }
 
-
+console.log(process.env.NODE_ENV);
 
 //app.get("/arquivo",tabelaCrud.pesquisar);
 let sheetUrl = process.env.MY_SHEET ? ""+process.env.MY_SHEET+"" 
