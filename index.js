@@ -72,7 +72,19 @@ app.post('/'+testl,(req,res)=>{
 //app.get("/arquivo",tabelaCrud.pesquisar);
 let sheetUrl = process.env.MY_SHEET ? process.env.MY_SHEET 
 : 'arquivo';
-app.post("/"+sheetUrl,tabelaCrud.pesquisar);
+app.post("/"+sheetUrl,(req,resposta)=>{
+  handy.readMyToken(fs,oAuth2Client).then(
+      handy.downloadMyFile(google,oAuth2Client).then(
+          tabelaCrud.pesquisar(req).then(dados=>
+              resposta.json(dados)
+          )
+          .catch(err=>ylog('n consigo pesquisar??'))
+      )
+      .catch(err=>ylog('n consigo baixar??'+err))
+  )
+  .catch(err=>ylog('vc n tem token??'+err))
+
+});
 
 
 app.get("/", (req, res) => {

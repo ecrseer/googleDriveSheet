@@ -25,9 +25,9 @@ async function pesquisar(requisicao,response){
     
     let placeb = { meuArray:arraysBuscados};
     console.log(arraysBuscados ) ;
-    const copy = placeb;
+    return placeb;
 
-    return response.json(copy);
+     
 
     
 }
