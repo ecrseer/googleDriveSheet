@@ -33,16 +33,7 @@ async function readMyToken(fs,oAuth2Client){
        }
 
 
-       const readMyTokenENV = function(oAuth2Client){
-           return new Promise((resolve,reject)=>{
-               try{oAuth2Client.setCredentials(
-                JSON.parse(process.env.TEMP_TK))
-               }catch(err){
-                   reject(err);
-               }
-                resolve('token is ok')
-           })
-       }
+       
        
 
-module.exports={downloadMyFile ,readMyToken,readMyTokenENV}
+module.exports={downloadMyFile ,readMyToken}

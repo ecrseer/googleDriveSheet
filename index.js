@@ -62,24 +62,6 @@ function templateBehaviour(resposta){
     resposta.render("index", { url: url });
 }
 
-let testl= process.env.NODE_ENV ? ""+process.env.NODE_ENV+"" : 'none'
-app.post('/'+testl,(req,res)=>{
-    console.log(handy.readMyTokenENV(234).then(tss=>res.json(tss)
-    ))
-})
-app.post('/tstenv',(req,resposta)=>{
-    handy.readMyTokenENV(oAuth2Client).then(
-        handy.downloadMyFile(google,oAuth2Client).then(
-            tabelaCrud.pesquisar(req).then(dados=>
-                resposta.json(dados)
-            )
-            .catch(err=>ylog('n consigo pesquisar??'))
-        )
-        .catch(err=>ylog('n consigo baixar??'+err))
-    )
-    .catch(err=>ylog('vc n tem token??'+err))
-  
-});
 
 
 //app.get("/arquivo",tabelaCrud.pesquisar);
