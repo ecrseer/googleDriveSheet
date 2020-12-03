@@ -9,7 +9,6 @@ var OAuth2Data = require("./google-credentials.json");
 
 
 
-
 const CLIENT_ID = OAuth2Data.web.client_id;
 const CLIENT_SECRET = OAuth2Data.web.client_secret;
 const REDIRECT_URL = process.env.NODE_ENV == 'production'?
