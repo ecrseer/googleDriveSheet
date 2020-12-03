@@ -17,18 +17,22 @@ async function downloadMyFile(google,oAuth2Client){
 }
 async function readMyToken(fs,oAuth2Client){
     return new Promise(
-       (resolve,reject)=>{               
-               let myJson = JSON.parse(
-                   fs.readFileSync('./meutoken.json')
-                   );
-               if (!myJson) reject(err);
+       (resolve,reject)=>{  
+        let myJsonTk;           
+           try{  
+            myJsonTk = fs.readFileSync('./meutoken.json');                   
+               }catch(err){
+                myJsonTk = process.env.TEMP_TK;
+                if (!myJsonTk) return reject();
+               }finally{
+                oAuth2Client.setCredentials(JSON.parse(myJsonTk));
+                return resolve();
+               }              
                
-               oAuth2Client.setCredentials(myJson);
-               
-               resolve(myJson);
-           }
-       )
+           })
        }
+
+
        const readMyTokenENV = function(oAuth2Client){
            return new Promise((resolve,reject)=>{
                try{oAuth2Client.setCredentials(
