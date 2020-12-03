@@ -16,7 +16,7 @@ var readFilePromise = function(file) {
 function filtro(arr){ return arr.length==4;}
 
 async function pesquisar(requisicao,response){
-    const pat = await downloadMyFile()
+    //const pat = await downloadMyFile()
     const workSheetsFromFile = xlsx.parse(`${__dirname}/armazen/tabela.xlsx`),
         nomezin = requisicao.body.nomezin,
         planilha = workSheetsFromFile[1].data,
