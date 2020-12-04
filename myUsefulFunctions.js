@@ -1,5 +1,7 @@
 const sampl = require('./driveApiSample');
 const tabelaCrud = require('./tabelaCrud');
+const fs = require("fs");
+
 async function downloadMyFile(google,oAuth2Client){
     return new Promise((resolve,reject)=>{
        try{
@@ -47,6 +49,13 @@ async function readMyToken(fs,oAuth2Client){
           
        }
        const downloadMyFileSync = (google,oAuth2Client,req,res)=>{
+                try {
+                    let lcl = './armazen/tabela.xlsx';
+                     if (fs.existsSync(lcl)) {
+                         
+                        fs.unlink(lcl,(err)=>console.log('dltando..'))
+                     }
+                 } catch(err) { console.error(err) }
         try{
             console.log('baixando arqv');
          const idF = '194t1ptGWmjV1uDGqepXUZhiEUAgnr8D9';
