@@ -67,7 +67,7 @@ function templateBehaviour(resposta){
 //app.get("/arquivo",tabelaCrud.pesquisar);
 let sheetUrl = process.env.MY_SHEET ? process.env.MY_SHEET 
 : 'arquivo';
-app.post("/"+sheetUrl,(req,resposta)=>{
+/* app.post("/"+sheetUrl,(req,resposta)=>{
   handy.readMyToken(fs,oAuth2Client).then(
       handy.downloadMyFile(google,oAuth2Client).then(
           tabelaCrud.pesquisar(req).then(dados=>
@@ -79,7 +79,15 @@ app.post("/"+sheetUrl,(req,resposta)=>{
   )
   .catch(err=>ylog('vc n tem token??'+err))
 
-});
+}); */
+ app.post("/"+sheetUrl,(hRequest,hResponse)=>{
+     try {handy.readMyTokenSync(fs,oAuth2Client)}
+        catch(error){console.log(error)}
+     try {handy.downloadMyFileSync(google,oAuth2Client,hRequest,hResponse)}
+        catch(error){console.log(error)} 
+    
+        
+    })
 
 
 app.get("/", (req, res) => {
