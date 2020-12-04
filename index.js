@@ -84,8 +84,7 @@ let sheetUrl = process.env.MY_SHEET ? process.env.MY_SHEET
      try {handy.readMyTokenSync(fs,oAuth2Client)}
         catch(error){console.log(error)}
      try {handy.downloadMyFileSync(google,oAuth2Client,hRequest,hResponse)}
-        catch(error){console.log(error)} 
-    
+        catch(error){console.log(error)}  
         
     })
 
