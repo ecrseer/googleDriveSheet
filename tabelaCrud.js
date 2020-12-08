@@ -31,8 +31,8 @@ async function pesquisar(requisicao,resposta){
             hasItemName
             ));
 
-    console.log(arrayBuscado);
-    let placeb = { meuArray:nomezin};
+    
+    let placeb = { meuArray:arrayBuscado};
     return resposta.json(placeb);    
 }
 
