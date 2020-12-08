@@ -22,30 +22,16 @@ async function pesquisar(requisicao,resposta){
     const workSheetsFromFile = xlsx.parse(`${__dirname}/armazen/tabela.xlsx`),
         nomezin = ""+requisicao.body.nomezin.toLowerCase(),
         planilha = workSheetsFromFile[1].data; 
-        
 
-    let
-        arraysBuscarei=[];
-        for (let index = 0; index < planilha.length; index++) {            
-            let linhaAtual=[];
-            isNecessario=false;
-            for (let coluna = 0; coluna < planilha[index].length; coluna++) {
-              let stringer =  ""+planilha[index][coluna];
-                if(stringer.toLowerCase().indexOf(nomezin)!==-1||
-                    isNecessario){
-                    linhaAtual.push(planilha[index][coluna]);
-                    isNecessario=true;
-                }
-                
-            }
-            //arraysBuscarei=arraysBuscarei.join([]);
-            arraysBuscarei.push(linhaAtual);
-       }
+        function hasItemName(item){
+            let mItem=item+"";
+            return mItem.toLowerCase().indexOf(nomezin)!==-1
+        }
+        arrayBuscado = planilha.filter(arr=>arr.some(
+            hasItemName
+            ));
 
-         //planilha.filter(array=>array
-         //   .some(stri=>stri==nomezin ))
-    
-    console.log(arraysBuscarei);
+    console.log(arrayBuscado);
     let placeb = { meuArray:nomezin};
     return resposta.json(placeb);    
 }
