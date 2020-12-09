@@ -20,7 +20,7 @@ async function pesquisar(requisicao,resposta){
     console.log('começou pes')
     
     const workSheetsFromFile = xlsx.parse(`${__dirname}/armazen/tabela.xlsx`),
-        nomezin = ""+requisicao.body.nomezin.toLowerCase(),
+        nomezin = ""+requisicao.params.nomezi.toLowerCase(),
         planilha = workSheetsFromFile[1].data; 
 
         function hasItemName(item){

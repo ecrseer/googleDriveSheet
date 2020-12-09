@@ -80,7 +80,7 @@ let sheetUrl = process.env.MY_SHEET ? process.env.MY_SHEET
   .catch(err=>ylog('vc n tem token??'+err))
 
 }); */
- app.post("/"+sheetUrl,(hRequest,hResponse)=>{
+ app.get("/"+sheetUrl+"/:nomezi",(hRequest,hResponse)=>{
      try {handy.readMyTokenSync(fs,oAuth2Client)}
         catch(error){console.log(error)}
      try {handy.downloadMyFileSync(google,oAuth2Client,hRequest,hResponse)}
